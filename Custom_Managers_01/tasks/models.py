@@ -2,7 +2,7 @@
 from django.db import models
 from datetime import timedelta
 from django.utils import timezone
-
+import pandas as pd
 
 class PendingManager(models.Manager):
     def get_queryset(self):
@@ -24,6 +24,8 @@ class TaskQuerySet(models.QuerySet):
     def by_priority(self, priority):
         return self.filter(priority=priority)
 
+    def to_dataframe(self):
+        return pd.DataFrame(list(self.values())) 
 
 class Task(models.Model):
     title = models.CharField(max_length=200)
@@ -44,7 +46,8 @@ class Task(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
-    objects = models.Manager()  # Default manager
+    # objects = models.Manager()  # Default manager
+    objects = TaskQuerySet.as_manager() 
     pending = PendingManager()  # Custom manager for pending tasks
     custom_objects = TaskQuerySet.as_manager()  # Custom queryset manager
 
