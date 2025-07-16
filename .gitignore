@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 start_a_shell.ps1
+activate_venv.ps1
 __pycache__/
 *.py[codz]
 *$py.class
