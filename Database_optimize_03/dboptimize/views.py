@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from .models import Project, Task
-from django.db.models import Count
+from django.db.models import Count, Q
 
 # def project_tasks(request):
 #     projects = Project.objects.all()
@@ -38,7 +38,7 @@ def project_tasks(request):
 def completed_task_count(request):
     # Use annotate to count completed tasks at the database level
     projects = Project.objects.annotate(
-        completed_count=Count('tasks', filter=models.Q(tasks__status='completed'))
+        completed_count=Count('tasks', filter=Q(tasks__status='completed'))
     )
     result = [f"Project: {project.name}, Completed Tasks: {project.completed_count}" for project in projects]
     return HttpResponse("<br>".join(result))
