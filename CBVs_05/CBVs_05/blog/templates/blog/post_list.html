@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Blog Posts</h1>
+    <a href="{% url 'post_create' %}">Create Post</a>
+    <ul>
+    {% for post in posts %}
+        <li><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> by {{ post.author }} 
+        (<a href="{% url 'post_update' post.pk %}">Edit</a> | 
+        <a href="{% url 'post_delete' post.pk %}">Delete</a>)</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
