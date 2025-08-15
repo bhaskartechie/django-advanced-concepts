@@ -5,6 +5,6 @@ from dashboard.views import AsyncPhotoView, photo_view
 
 urlpatterns = [
     path("photos/", AsyncPhotoView.as_view(), name="async_photos"), # This is the asynchronous version
-    # Uncomment the line below to use the synchronous version
-    path("photos/", photo_view, name="async_photos"), # This is the synchronous version
+    # Uncomment the line below to use the synchronous version and comment the async version
+    # path("photos/", photo_view, name="sync_photos"), # This is the synchronous version
 ]
