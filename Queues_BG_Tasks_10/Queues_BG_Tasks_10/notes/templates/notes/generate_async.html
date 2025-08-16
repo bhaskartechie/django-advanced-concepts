@@ -1,0 +1,65 @@
+<h3>Generate PDF (Background / Celery)</h3>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Generate PDF (Celery)</button>
+</form>
+
+<div id="status-display">
+</div>
+
+<script>
+  let pollingInterval;
+
+  // Helper function to get the CSRF token from the cookie
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  function checkReportStatus() {
+    fetch("{% url 'check_report_status' %}")
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ready') {
+          alert(data.message);
+          clearInterval(pollingInterval);
+          document.getElementById('status-display').textContent = data.message;
+        }
+      })
+      .catch(error => console.error('Error checking status:', error));
+  }
+
+  document.getElementById('report-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const csrftoken = getCookie('csrftoken');
+
+    fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: {
+        'X-CSRFToken': csrftoken
+      }
+    }).then(response => {
+      if (response.ok) {
+        pollingInterval = setInterval(checkReportStatus, 3000);
+      } else {
+        // Handle potential errors like a 403 Forbidden due to CSRF failure
+        console.error('Failed to start PDF generation.');
+        alert('Failed to start PDF generation. Please try again.');
+      }
+    }).catch(error => {
+      console.error('Network error:', error);
+      alert('Network error. Please check your connection.');
+    });
+  });
+</script>
