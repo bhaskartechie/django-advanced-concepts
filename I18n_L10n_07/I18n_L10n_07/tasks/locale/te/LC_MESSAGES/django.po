@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-03 12:04+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\models.py:8
+msgid "Low"
+msgstr "తక్కువ"
+
+#: .\models.py:9
+msgid "Medium"
+msgstr "మధ్యస్థ"
+
+#: .\models.py:10
+msgid "High"
+msgstr "అధిక"
+
+#: .\models.py:12 .\serializers.py:26
+msgid "Title"
+msgstr "శీర్షిక"
+
+#: .\models.py:13 .\serializers.py:27
+msgid "Description"
+msgstr "వివరణ"
+
+#: .\models.py:14 .\serializers.py:28
+msgid "Due Date"
+msgstr "గడువు తేదీ"
+
+#: .\models.py:16 .\serializers.py:29
+msgid "Priority"
+msgstr "ప్రాధాన్యత"
+
+#: .\models.py:19
+msgid "Assigned To"
+msgstr "కేటాయించబడిన వ్యక్తి"
+
+#: .\serializers.py:41
+msgid "Priority must be 'low', 'medium', or 'high'"
+msgstr "ప్రాధాన్యత 'తక్కువ', 'మధ్యస్థ' లేదా 'అధిక' అయి ఉండాలి"
+
+#: .\serializers.py:47
+msgid "Due date cannot be in the past"
+msgstr "గడువు తేదీ గతంలో ఉండకూడదు"

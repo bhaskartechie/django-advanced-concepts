@@ -1,0 +1,8 @@
+<h3>Generate PDF (Synchronous)</h3>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Generate PDF (Sync)</button>
+</form>
+{% for m in messages %}
+<p>{{ m }}</p>
+{% endfor %}
